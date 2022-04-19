@@ -3,7 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 
 function Table() {
   const { data } = useContext(StarWarsContext);
-
+  console.log(data);
   return (
     <table>
       <thead>
@@ -23,7 +23,6 @@ function Table() {
           <th>Url</th>
         </tr>
       </thead>
-
       <tbody>
         {
           data && data.map((element) => (
@@ -33,7 +32,7 @@ function Table() {
               <td>{ element.orbital_period }</td>
               <td>{ element.diameter }</td>
               <td>{ element.climate }</td>
-              <td>{ element.gavity }</td>
+              <td>{ element.gravity }</td>
               <td>{ element.terrain }</td>
               <td>{ element.surface_water }</td>
               <td>{ element.population }</td>

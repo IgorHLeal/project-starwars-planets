@@ -4,8 +4,10 @@ import StarWarsContext from './StarWarsContext';
 import fetchStarWarsPlanets from '../services/StarWarsAPI';
 
 function StarWarsProvider({ children }) {
-  const [data, setData] = useState({});
-
+  const [data, setData] = useState([]);
+  console.log(data);
+  // O array vazio ao final da função é equivalente ao didMount; Sempre que o estado é alterado ele executa novamente o bloco de código.
+  // useEffect controla o fluxo de dados, trata efeitos colaterais de outras funções
   useEffect(() => {
     const setPlanets = async () => {
       const response = await fetchStarWarsPlanets();
@@ -19,7 +21,7 @@ function StarWarsProvider({ children }) {
   };
 
   return (
-    <StarWarsContext.Provider value={ { contextValue } }>
+    <StarWarsContext.Provider value={ contextValue }>
       { children }
     </StarWarsContext.Provider>
   );
