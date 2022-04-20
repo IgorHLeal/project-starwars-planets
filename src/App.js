@@ -2,11 +2,15 @@ import React from 'react';
 import './App.css';
 import StarWarsProvider from './context/StarWarsProvider';
 import Table from './components/Table';
+import SearchPlanets from './components/SearchPlanets';
 
 function App() {
   return (
     <StarWarsProvider>
-      <Table />
+      <div className="main">
+        <SearchPlanets />
+        <Table />
+      </div>
     </StarWarsProvider>
   );
 }

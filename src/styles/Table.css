@@ -1,0 +1,11 @@
+table {
+  margin-top: 100px;
+  padding: 20px;
+}
+
+.main-table {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
