@@ -10,6 +10,18 @@ function StarWarsProvider({ children }) {
       name: '',
     },
   });
+  // Estado para os inputs
+  const [filterByNumericValues, setFilterByNumericValues] = useState({
+    column: 'population',
+    comparison: 'maior que',
+    value: '0',
+  });
+  // Estado para o array de filtros
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
+  useEffect(() => {
+    console.log(selectedFilters);
+  }, [selectedFilters]);
 
   // O array vazio ao final da função é equivalente ao didMount; Sempre que o estado é alterado ele executa novamente o bloco de código.
   // useEffect controla o fluxo de dados, trata efeitos colaterais de outras funções
@@ -30,9 +42,50 @@ function StarWarsProvider({ children }) {
     setData(newPlanet);
   };
 
+  const handleFilteredData = (line) => {
+    const rowsData = [];
+
+    selectedFilters.forEach((element) => {
+      switch (element.comparison) {
+      case 'maior que':
+        rowsData.push(Number(line[element.column]) > Number(element.value));
+        break;
+
+      case 'menor que':
+        rowsData.push(Number(line[element.column]) < Number(element.value));
+        break;
+
+      case 'igual a':
+        rowsData.push((line[element.column]) === element.value);
+        break;
+
+      default:
+        return true;
+      }
+    });
+
+    // Retorna o resultado das comparações
+    return rowsData.every((element) => element);
+  };
+
+  const handleClick = () => {
+    setSelectedFilters([
+      ...selectedFilters, filterByNumericValues,
+    ]);
+    setFilterByNumericValues({
+      column: '',
+      comparison: '',
+      value: '',
+    });
+  };
+
   const contextValue = {
     data,
     filterName,
+    filterByNumericValues,
+    setFilterByNumericValues,
+    handleFilteredData,
+    handleClick,
   };
 
   return (

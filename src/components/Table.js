@@ -3,7 +3,7 @@ import StarWarsContext from '../context/StarWarsContext';
 import '../styles/Table.css';
 
 function Table() {
-  const { data } = useContext(StarWarsContext);
+  const { data, handleFilteredData } = useContext(StarWarsContext);
 
   return (
     <div className="main-table">
@@ -27,7 +27,7 @@ function Table() {
         </thead>
         <tbody>
           {
-            data && data.map((element) => (
+            data && data.filter(handleFilteredData).map((element) => (
               <tr key={ element.name }>
                 <td>{ element.name }</td>
                 <td>{ element.rotation_period }</td>
