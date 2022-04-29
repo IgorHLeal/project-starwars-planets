@@ -16,6 +16,7 @@ function StarWarsProvider({ children }) {
     comparison: 'maior que',
     value: '0',
   });
+
   // Estado para o array de filtros
   const [selectedFilters, setSelectedFilters] = useState([]);
 
@@ -68,6 +69,11 @@ function StarWarsProvider({ children }) {
     return rowsData.every((element) => element);
   };
 
+  // Controla se o filtro deixa de ser mostrado depois de selecionado
+  const handleOptions = (option) => (
+    !selectedFilters.find((filtered) => option === filtered.column)
+  );
+
   const handleClick = () => {
     setSelectedFilters([
       ...selectedFilters, filterByNumericValues,
@@ -84,8 +90,11 @@ function StarWarsProvider({ children }) {
     filterName,
     filterByNumericValues,
     setFilterByNumericValues,
+    selectedFilters,
+    setSelectedFilters,
     handleFilteredData,
     handleClick,
+    handleOptions,
   };
 
   return (
