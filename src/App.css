@@ -13,4 +13,5 @@
 
 .main {
   background-image: url('./images/ceu2.webp');
+  height: 100vh;
 }

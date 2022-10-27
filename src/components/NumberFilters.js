@@ -15,7 +15,6 @@ function NumberFilters() {
   return (
     <div>
       <header>
-
         <select
           data-testid="column-filter"
           name="column"
@@ -86,7 +85,6 @@ function NumberFilters() {
             key={ index }
           >
             <button
-              data-testid="button-remove-filters"
               type="button"
               className="remover"
               onClick={ () => {
@@ -101,6 +99,14 @@ function NumberFilters() {
           </div>
         ))
       }
+
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        /* onClick={} */
+      >
+        Remover filtros
+      </button>
     </div>
 
   );
